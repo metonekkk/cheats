@@ -1,5 +1,5 @@
 -- ==========================================
--- PROJECT AIM - BETA EDITION V8 (KEYBIND LIST WYŁĄCZONA DOMYŚLNIE)
+-- PROJECT AIM - BETA EDITION V15 (TRIGGERBOT FULL FIX)
 -- ==========================================
 
 local function createInviteSystem()
@@ -163,7 +163,7 @@ local function createInviteSystem()
             inviteGui:Destroy()
             
             -- ==========================================
-            -- GŁÓWNY SKRYPT PROJECT AIM V8 (KEYBIND LIST WYŁĄCZONA)
+            -- GŁÓWNY SKRYPT PROJECT AIM V15 (TRIGGERBOT FULL FIX)
             -- ==========================================
             
             local screenGui = Instance.new("ScreenGui")
@@ -172,7 +172,7 @@ local function createInviteSystem()
             local loadingBar = Instance.new("Frame")
             local loadingFill = Instance.new("Frame")
             local loadingProgress = Instance.new("TextLabel")
-            local loadingSubText = Instance.new("TextLabel")
+            local loadingStatus = Instance.new("TextLabel")
             local mainFrame = Instance.new("Frame")
             local topBar = Instance.new("Frame")
             local titleLabel = Instance.new("TextLabel")
@@ -192,7 +192,7 @@ local function createInviteSystem()
             local watermarkSeparator = Instance.new("Frame")
             local fpsLabel = Instance.new("TextLabel")
             
-            -- KEYBIND LIST (WYŁĄCZONA DOMYŚLNIE)
+            -- KEYBIND LIST
             local keybindList = Instance.new("Frame")
             local keybindTitle = Instance.new("TextLabel")
             local aimStatus = Instance.new("TextLabel")
@@ -219,6 +219,7 @@ local function createInviteSystem()
             loadingFrame.BackgroundTransparency = 0.1
             loadingFrame.Visible = true
             loadingFrame.ZIndex = 10
+            loadingFrame.Name = "LoadingFrame"
 
             local loadingCorner = Instance.new("UICorner")
             loadingCorner.CornerRadius = UDim.new(0, 12)
@@ -233,12 +234,14 @@ local function createInviteSystem()
             loadingTitle.BackgroundTransparency = 1
             loadingTitle.Size = UDim2.new(1, 0, 0, 50)
             loadingTitle.Position = UDim2.new(0, 0, 0, 20)
-            loadingTitle.Text = "ŁADOWANIE PROJECT AIM...."
+            loadingTitle.Text = "PROJECT AIM"
             loadingTitle.TextColor3 = Color3.fromRGB(220, 220, 255)
             loadingTitle.Font = Enum.Font.Code
-            loadingTitle.TextSize = 28
+            loadingTitle.TextSize = 32
+            loadingTitle.ZIndex = 2
+            loadingTitle.Name = "LoadingTitle"
 
-            loadingSubText = Instance.new("TextLabel")
+            local loadingSubText = Instance.new("TextLabel")
             loadingSubText.Parent = loadingFrame
             loadingSubText.BackgroundTransparency = 1
             loadingSubText.Size = UDim2.new(1, 0, 0, 30)
@@ -248,6 +251,7 @@ local function createInviteSystem()
             loadingSubText.Font = Enum.Font.Code
             loadingSubText.TextSize = 18
             loadingSubText.ZIndex = 2
+            loadingSubText.Name = "LoadingSubText"
 
             loadingBar.Parent = loadingFrame
             loadingBar.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
@@ -255,6 +259,7 @@ local function createInviteSystem()
             loadingBar.Position = UDim2.new(0.1, 0, 0, 120)
             loadingBar.BorderSizePixel = 0
             loadingBar.ClipsDescendants = true
+            loadingBar.Name = "LoadingBar"
 
             local loadingBarCorner = Instance.new("UICorner")
             loadingBarCorner.CornerRadius = UDim.new(0, 3)
@@ -264,6 +269,7 @@ local function createInviteSystem()
             loadingFill.BackgroundColor3 = Color3.fromRGB(80, 80, 255)
             loadingFill.Size = UDim2.new(0, 0, 1, 0)
             loadingFill.BorderSizePixel = 0
+            loadingFill.Name = "LoadingFill"
 
             local loadingFillCorner = Instance.new("UICorner")
             loadingFillCorner.CornerRadius = UDim.new(0, 3)
@@ -277,16 +283,17 @@ local function createInviteSystem()
             loadingProgress.TextColor3 = Color3.fromRGB(150, 150, 150)
             loadingProgress.Font = Enum.Font.Code
             loadingProgress.TextSize = 14
+            loadingProgress.Name = "LoadingProgress"
 
-            loadingSubText = Instance.new("TextLabel")
-            loadingSubText.Parent = loadingFrame
-            loadingSubText.BackgroundTransparency = 1
-            loadingSubText.Size = UDim2.new(1, 0, 0, 30)
-            loadingSubText.Position = UDim2.new(0, 0, 0, 160)
-            loadingSubText.Text = "INICJALIZACJA..."
-            loadingSubText.TextColor3 = Color3.fromRGB(100, 100, 150)
-            loadingSubText.Font = Enum.Font.Code
-            loadingSubText.TextSize = 12
+            loadingStatus.Parent = loadingFrame
+            loadingStatus.BackgroundTransparency = 1
+            loadingStatus.Size = UDim2.new(1, 0, 0, 30)
+            loadingStatus.Position = UDim2.new(0, 0, 0, 160)
+            loadingStatus.Text = "INICJALIZACJA..."
+            loadingStatus.TextColor3 = Color3.fromRGB(100, 100, 150)
+            loadingStatus.Font = Enum.Font.Code
+            loadingStatus.TextSize = 12
+            loadingStatus.Name = "LoadingStatus"
 
             -- ==========================================
             -- WATERMARK
@@ -302,6 +309,7 @@ local function createInviteSystem()
             watermark.Active = true
             watermark.Draggable = true
             watermark.Selectable = true
+            watermark.Name = "Watermark"
 
             local watermarkCorner = Instance.new("UICorner")
             watermarkCorner.CornerRadius = UDim.new(0, 8)
@@ -322,6 +330,7 @@ local function createInviteSystem()
             watermarkText.TextXAlignment = Enum.TextXAlignment.Left
             watermarkText.Font = Enum.Font.Code
             watermarkText.TextSize = 16
+            watermarkText.Name = "WatermarkText"
 
             watermarkSeparator.Parent = watermark
             watermarkSeparator.BackgroundColor3 = Color3.fromRGB(80, 80, 255)
@@ -329,6 +338,7 @@ local function createInviteSystem()
             watermarkSeparator.Size = UDim2.new(0, 1, 0, 20)
             watermarkSeparator.Position = UDim2.new(0, 135, 0.5, -10)
             watermarkSeparator.BorderSizePixel = 0
+            watermarkSeparator.Name = "WatermarkSeparator"
 
             fpsLabel.Parent = watermark
             fpsLabel.BackgroundTransparency = 1
@@ -339,6 +349,7 @@ local function createInviteSystem()
             fpsLabel.Font = Enum.Font.Code
             fpsLabel.TextSize = 14
             fpsLabel.TextXAlignment = Enum.TextXAlignment.Left
+            fpsLabel.Name = "FPSLabel"
 
             local watermarkGlow = Instance.new("Frame")
             watermarkGlow.Parent = watermark
@@ -348,13 +359,14 @@ local function createInviteSystem()
             watermarkGlow.Position = UDim2.new(0, 0, 0, 0)
             watermarkGlow.BorderSizePixel = 0
             watermarkGlow.ZIndex = -1
+            watermarkGlow.Name = "WatermarkGlow"
 
             local watermarkGlowCorner = Instance.new("UICorner")
             watermarkGlowCorner.CornerRadius = UDim.new(0, 8)
             watermarkGlowCorner.Parent = watermarkGlow
 
             -- ==========================================
-            -- KEYBIND LIST (WYŁĄCZONA DOMYŚLNIE)
+            -- KEYBIND LIST
             -- ==========================================
 
             keybindList.Parent = screenGui
@@ -363,11 +375,12 @@ local function createInviteSystem()
             keybindList.Size = UDim2.new(0, 200, 0, 140)
             keybindList.Position = UDim2.new(1, -220, 0, 100)
             keybindList.BorderSizePixel = 0
-            keybindList.Visible = false -- WYŁĄCZONA DOMYŚLNIE!
+            keybindList.Visible = false
             keybindList.Active = true
             keybindList.Draggable = true
             keybindList.Selectable = true
             keybindList.ZIndex = 20
+            keybindList.Name = "KeybindList"
 
             local keybindCorner = Instance.new("UICorner")
             keybindCorner.CornerRadius = UDim.new(0, 8)
@@ -388,6 +401,7 @@ local function createInviteSystem()
             keybindTitle.Font = Enum.Font.Code
             keybindTitle.TextSize = 16
             keybindTitle.ZIndex = 21
+            keybindTitle.Name = "KeybindTitle"
 
             local keybindTitleCorner = Instance.new("UICorner")
             keybindTitleCorner.CornerRadius = UDim.new(0, 8)
@@ -401,6 +415,7 @@ local function createInviteSystem()
             line1.Position = UDim2.new(0.05, 0, 0, 45)
             line1.BorderSizePixel = 0
             line1.ZIndex = 22
+            line1.Name = "Line1"
 
             -- AIMBOT
             aimStatus.Parent = keybindList
@@ -413,6 +428,7 @@ local function createInviteSystem()
             aimStatus.TextSize = 14
             aimStatus.TextXAlignment = Enum.TextXAlignment.Left
             aimStatus.ZIndex = 22
+            aimStatus.Name = "AimStatus"
 
             -- Linia oddzielająca
             line2.Parent = keybindList
@@ -422,6 +438,7 @@ local function createInviteSystem()
             line2.Position = UDim2.new(0.05, 0, 0, 85)
             line2.BorderSizePixel = 0
             line2.ZIndex = 22
+            line2.Name = "Line2"
 
             -- TRIGGER
             triggerStatus.Parent = keybindList
@@ -434,6 +451,7 @@ local function createInviteSystem()
             triggerStatus.TextSize = 14
             triggerStatus.TextXAlignment = Enum.TextXAlignment.Left
             triggerStatus.ZIndex = 22
+            triggerStatus.Name = "TriggerStatus"
 
             -- MENU
             menuStatus.Parent = keybindList
@@ -446,6 +464,7 @@ local function createInviteSystem()
             menuStatus.TextSize = 12
             menuStatus.TextXAlignment = Enum.TextXAlignment.Left
             menuStatus.ZIndex = 22
+            menuStatus.Name = "MenuStatus"
 
             -- ==========================================
             -- GŁÓWNE OKNO
@@ -461,6 +480,7 @@ local function createInviteSystem()
             mainFrame.ClipsDescendants = true
             mainFrame.Visible = false
             mainFrame.ZIndex = 5
+            mainFrame.Name = "MainFrame"
 
             local mainCorner = Instance.new("UICorner")
             mainCorner.CornerRadius = UDim.new(0, 8)
@@ -476,6 +496,7 @@ local function createInviteSystem()
             topBar.BackgroundColor3 = Color3.fromRGB(25, 25, 32)
             topBar.Size = UDim2.new(1, 0, 0, 45)
             topBar.BorderSizePixel = 0
+            topBar.Name = "TopBar"
 
             local topCorner = Instance.new("UICorner")
             topCorner.CornerRadius = UDim.new(0, 8)
@@ -490,6 +511,7 @@ local function createInviteSystem()
             titleLabel.TextXAlignment = Enum.TextXAlignment.Left
             titleLabel.Font = Enum.Font.Code
             titleLabel.TextSize = 18
+            titleLabel.Name = "TitleLabel"
 
             versionLabel.Parent = topBar
             versionLabel.BackgroundTransparency = 1
@@ -500,6 +522,7 @@ local function createInviteSystem()
             versionLabel.TextXAlignment = Enum.TextXAlignment.Left
             versionLabel.Font = Enum.Font.Code
             versionLabel.TextSize = 14
+            versionLabel.Name = "VersionLabel"
 
             minimizeBtn.Parent = topBar
             minimizeBtn.BackgroundTransparency = 1
@@ -510,6 +533,7 @@ local function createInviteSystem()
             minimizeBtn.TextSize = 20
             minimizeBtn.Font = Enum.Font.Code
             minimizeBtn.BorderSizePixel = 0
+            minimizeBtn.Name = "MinimizeBtn"
 
             closeBtn.Parent = topBar
             closeBtn.BackgroundTransparency = 1
@@ -520,6 +544,7 @@ local function createInviteSystem()
             closeBtn.TextSize = 22
             closeBtn.Font = Enum.Font.Code
             closeBtn.BorderSizePixel = 0
+            closeBtn.Name = "CloseBtn"
 
             -- TABS
             local tabBar = Instance.new("Frame")
@@ -528,6 +553,7 @@ local function createInviteSystem()
             tabBar.Size = UDim2.new(1, 0, 0, 40)
             tabBar.Position = UDim2.new(0, 0, 0, 45)
             tabBar.BorderSizePixel = 0
+            tabBar.Name = "TabBar"
 
             local tabBarCorner = Instance.new("UICorner")
             tabBarCorner.CornerRadius = UDim.new(0, 8)
@@ -542,6 +568,7 @@ local function createInviteSystem()
             tabAimbot.Font = Enum.Font.Code
             tabAimbot.TextSize = 13
             tabAimbot.BorderSizePixel = 0
+            tabAimbot.Name = "TabAimbot"
 
             local tabAimbotCorner = Instance.new("UICorner")
             tabAimbotCorner.CornerRadius = UDim.new(0, 4)
@@ -556,6 +583,7 @@ local function createInviteSystem()
             tabESP.Font = Enum.Font.Code
             tabESP.TextSize = 13
             tabESP.BorderSizePixel = 0
+            tabESP.Name = "TabESP"
 
             local tabESPCorner = Instance.new("UICorner")
             tabESPCorner.CornerRadius = UDim.new(0, 4)
@@ -570,6 +598,7 @@ local function createInviteSystem()
             tabTrigger.Font = Enum.Font.Code
             tabTrigger.TextSize = 13
             tabTrigger.BorderSizePixel = 0
+            tabTrigger.Name = "TabTrigger"
 
             local tabTriggerCorner = Instance.new("UICorner")
             tabTriggerCorner.CornerRadius = UDim.new(0, 4)
@@ -584,6 +613,7 @@ local function createInviteSystem()
             tabSettings.Font = Enum.Font.Code
             tabSettings.TextSize = 13
             tabSettings.BorderSizePixel = 0
+            tabSettings.Name = "TabSettings"
 
             local tabSettingsCorner = Instance.new("UICorner")
             tabSettingsCorner.CornerRadius = UDim.new(0, 4)
@@ -598,6 +628,7 @@ local function createInviteSystem()
             containerAimbot.ScrollBarThickness = 4
             containerAimbot.ScrollBarImageColor3 = Color3.fromRGB(60, 60, 70)
             containerAimbot.CanvasSize = UDim2.new(0, 0, 0, 300)
+            containerAimbot.Name = "ContainerAimbot"
 
             containerESP.Parent = mainFrame
             containerESP.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
@@ -608,6 +639,7 @@ local function createInviteSystem()
             containerESP.ScrollBarImageColor3 = Color3.fromRGB(60, 60, 70)
             containerESP.CanvasSize = UDim2.new(0, 0, 0, 450)
             containerESP.Visible = false
+            containerESP.Name = "ContainerESP"
 
             containerTrigger.Parent = mainFrame
             containerTrigger.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
@@ -618,6 +650,7 @@ local function createInviteSystem()
             containerTrigger.ScrollBarImageColor3 = Color3.fromRGB(60, 60, 70)
             containerTrigger.CanvasSize = UDim2.new(0, 0, 0, 300)
             containerTrigger.Visible = false
+            containerTrigger.Name = "ContainerTrigger"
 
             containerSettings.Parent = mainFrame
             containerSettings.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
@@ -626,8 +659,9 @@ local function createInviteSystem()
             containerSettings.BorderSizePixel = 0
             containerSettings.ScrollBarThickness = 4
             containerSettings.ScrollBarImageColor3 = Color3.fromRGB(60, 60, 70)
-            containerSettings.CanvasSize = UDim2.new(0, 0, 0, 150)
+            containerSettings.CanvasSize = UDim2.new(0, 0, 0, 200)
             containerSettings.Visible = false
+            containerSettings.Name = "ContainerSettings"
 
             -- ==========================================
             -- FUNKCJE TWORZENIA ELEMENTÓW GUI
@@ -643,6 +677,7 @@ local function createInviteSystem()
                 frame.Position = UDim2.new(0.025, 0, 0, yPos)
                 frame.BorderSizePixel = 0
                 frame.ZIndex = 10
+                frame.Name = "ToggleFrame_" .. text
 
                 local frameCorner = Instance.new("UICorner")
                 frameCorner.CornerRadius = UDim.new(0, 6)
@@ -659,6 +694,7 @@ local function createInviteSystem()
                 label.Font = Enum.Font.Code
                 label.TextSize = 14
                 label.ZIndex = 11
+                label.Name = "ToggleLabel_" .. text
 
                 local button = Instance.new("TextButton")
                 button.Parent = frame
@@ -671,6 +707,7 @@ local function createInviteSystem()
                 button.TextSize = 12
                 button.BorderSizePixel = 0
                 button.ZIndex = 11
+                button.Name = "ToggleButton_" .. text
 
                 local buttonCorner = Instance.new("UICorner")
                 buttonCorner.CornerRadius = UDim.new(0, 4)
@@ -697,6 +734,7 @@ local function createInviteSystem()
                 frame.Position = UDim2.new(0.025, 0, 0, yPos)
                 frame.BorderSizePixel = 0
                 frame.ZIndex = 10
+                frame.Name = "ColorPickerFrame_" .. text
 
                 local frameCorner = Instance.new("UICorner")
                 frameCorner.CornerRadius = UDim.new(0, 6)
@@ -713,6 +751,7 @@ local function createInviteSystem()
                 label.Font = Enum.Font.Code
                 label.TextSize = 14
                 label.ZIndex = 11
+                label.Name = "ColorPickerLabel_" .. text
 
                 for i, colorData in ipairs(colors) do
                     local colorBtn = Instance.new("TextButton")
@@ -724,6 +763,7 @@ local function createInviteSystem()
                     colorBtn.BorderSizePixel = 0
                     colorBtn.ZIndex = 11
                     colorBtn.AutoButtonColor = false
+                    colorBtn.Name = "ColorButton_" .. colorData.name
 
                     local btnCorner = Instance.new("UICorner")
                     btnCorner.CornerRadius = UDim.new(0, 4)
@@ -758,6 +798,7 @@ local function createInviteSystem()
                 frame.Position = UDim2.new(0.025, 0, 0, yPos)
                 frame.BorderSizePixel = 0
                 frame.ZIndex = 10
+                frame.Name = "KeybindFrame_" .. text
 
                 local frameCorner = Instance.new("UICorner")
                 frameCorner.CornerRadius = UDim.new(0, 6)
@@ -774,6 +815,7 @@ local function createInviteSystem()
                 label.Font = Enum.Font.Code
                 label.TextSize = 14
                 label.ZIndex = 11
+                label.Name = "KeybindLabel_" .. text
 
                 local statusIndicator = Instance.new("Frame")
                 statusIndicator.Parent = frame
@@ -782,6 +824,7 @@ local function createInviteSystem()
                 statusIndicator.Position = UDim2.new(0, 100, 0.5, -6)
                 statusIndicator.BorderSizePixel = 0
                 statusIndicator.ZIndex = 11
+                statusIndicator.Name = "StatusIndicator_" .. text
 
                 local statusCorner = Instance.new("UICorner")
                 statusCorner.CornerRadius = UDim.new(1, 0)
@@ -799,6 +842,7 @@ local function createInviteSystem()
                 button.BorderSizePixel = 0
                 button.ZIndex = 11
                 button.TextXAlignment = Enum.TextXAlignment.Left
+                button.Name = "KeybindButton_" .. text
 
                 local buttonCorner = Instance.new("UICorner")
                 buttonCorner.CornerRadius = UDim.new(0, 4)
@@ -819,6 +863,7 @@ local function createInviteSystem()
                 editIcon.Font = Enum.Font.Code
                 editIcon.TextSize = 12
                 editIcon.ZIndex = 12
+                editIcon.Name = "EditIcon_" .. text
 
                 local waiting = false
                 button.MouseButton1Click:Connect(function()
@@ -855,6 +900,7 @@ local function createInviteSystem()
                 frame.Position = UDim2.new(0.025, 0, 0, yPos)
                 frame.BorderSizePixel = 0
                 frame.ZIndex = 10
+                frame.Name = "SliderFrame_" .. text
 
                 local frameCorner = Instance.new("UICorner")
                 frameCorner.CornerRadius = UDim.new(0, 6)
@@ -871,6 +917,7 @@ local function createInviteSystem()
                 label.Font = Enum.Font.Code
                 label.TextSize = 14
                 label.ZIndex = 11
+                label.Name = "SliderLabel_" .. text
 
                 local valueLabel = Instance.new("TextLabel")
                 valueLabel.Parent = frame
@@ -882,6 +929,7 @@ local function createInviteSystem()
                 valueLabel.Font = Enum.Font.Code
                 valueLabel.TextSize = 14
                 valueLabel.ZIndex = 11
+                valueLabel.Name = "SliderValue_" .. text
 
                 local sliderBg = Instance.new("Frame")
                 sliderBg.Parent = frame
@@ -890,6 +938,7 @@ local function createInviteSystem()
                 sliderBg.Position = UDim2.new(0.05, 0, 0, 30)
                 sliderBg.BorderSizePixel = 0
                 sliderBg.ZIndex = 11
+                sliderBg.Name = "SliderBg_" .. text
 
                 local sliderBgCorner = Instance.new("UICorner")
                 sliderBgCorner.CornerRadius = UDim.new(0, 3)
@@ -901,6 +950,7 @@ local function createInviteSystem()
                 sliderFill.Size = UDim2.new((default - min) / (max - min), 0, 1, 0)
                 sliderFill.BorderSizePixel = 0
                 sliderFill.ZIndex = 12
+                sliderFill.Name = "SliderFill_" .. text
 
                 local sliderFillCorner = Instance.new("UICorner")
                 sliderFillCorner.CornerRadius = UDim.new(0, 3)
@@ -997,8 +1047,8 @@ local function createInviteSystem()
             local nameTagsState = false
             local highlightState = true
             local tracerState = false
-            local highlightColor = Color3.fromRGB(70, 70, 255) -- NIEBIESKI
-            local tracerColor = Color3.fromRGB(70, 70, 255) -- NIEBIESKI
+            local highlightColor = Color3.fromRGB(70, 70, 255)
+            local tracerColor = Color3.fromRGB(70, 70, 255)
 
             local espToggle = createToggle(containerESP, "esp", false, function(state)
                 espState = state
@@ -1008,7 +1058,6 @@ local function createInviteSystem()
                     for player, _ in pairs(highlights) do
                         cleanupESP(player)
                     end
-                    -- Czyścimy tracery
                     for _, v in pairs(Tracers) do
                         v:Destroy()
                     end
@@ -1084,15 +1133,14 @@ local function createInviteSystem()
             end)
 
             -- ==========================================
-            -- TWORZENIE ELEMENTÓW TRIGGERBOT
+            -- TWORZENIE ELEMENTÓW TRIGGERBOT (NAPRAWDĘ DZIAŁA!)
             -- ==========================================
 
             local triggerbotState = false
             local triggerKey = Enum.KeyCode.G
-            local triggerDelay = 0.001
             local triggerbotActive = false
             local lastShotTime = 0
-            local SHOT_COOLDOWN = 0.05
+            local SHOT_COOLDOWN = 0.03
 
             local triggerToggle = createToggle(containerTrigger, "triggerbot", false, function(state)
                 triggerbotState = state
@@ -1107,16 +1155,12 @@ local function createInviteSystem()
                 triggerKey = key
             end)
 
-            createSlider(containerTrigger, "delay (ms)", 0, 50, 1, function(value)
-                triggerDelay = value / 1000
-            end)
-
             -- ==========================================
             -- TWORZENIE ELEMENTÓW SETTINGS
             -- ==========================================
 
             local menuKey = Enum.KeyCode.RightShift
-            local keybindListVisible = false -- WYŁĄCZONA DOMYŚLNIE!
+            local keybindListVisible = false
 
             local menuKeybind = createKeybind(containerSettings, "menu key", "RightShift", function() return false end, function(key)
                 menuKey = key
@@ -1126,7 +1170,7 @@ local function createInviteSystem()
                 watermark.Visible = state
             end)
 
-            createToggle(containerSettings, "keybind list", false, function(state) -- DOMYŚLNIE FALSE
+            createToggle(containerSettings, "keybind list", false, function(state)
                 keybindListVisible = state
                 keybindList.Visible = state
                 if state then
@@ -1243,19 +1287,16 @@ local function createInviteSystem()
                 
                 -- TRACERY
                 if espState and tracerState then
-                    -- Czyścimy stare tracery
                     for _, v in pairs(Tracers) do
                         v:Destroy()
                     end
                     Tracers = {}
                     
-                    -- Rysujemy nowe tracery dla każdego gracza
                     for _, v in pairs(players:GetPlayers()) do
                         if v ~= localPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and v.Character:FindFirstChild("Head") then
                             local Head = v.Character.Head
                             local HeadPos, Vis = camera:WorldToViewportPoint(Head.Position)
                             
-                            -- Rysuj tylko jeśli gracz jest widoczny
                             if Vis then
                                 local Tracer = Drawing.new("Line")
                                 Tracer.Visible = true
@@ -1270,7 +1311,6 @@ local function createInviteSystem()
                         end
                     end
                 else
-                    -- Jeśli wyłączone, czyścimy tracery
                     for _, v in pairs(Tracers) do
                         v:Destroy()
                     end
@@ -1341,7 +1381,7 @@ local function createInviteSystem()
                 end
             end)
 
-            -- Petla aimbota z predykcja 0.01
+            -- Petla aimbota z predykcja
             runService.RenderStepped:Connect(function()
                 if aimbotActive and aimbotState then
                     local closestPlayer = nil
@@ -1399,7 +1439,7 @@ local function createInviteSystem()
                 end
             end)
 
-            -- TRIGGERBOT
+            -- TRIGGERBOT - NAPRAWDĘ DZIAŁA!
             local function startTriggerbot()
                 if triggerConnection then triggerConnection:Disconnect() end
 
@@ -1412,40 +1452,25 @@ local function createInviteSystem()
                     end
                     
                     local target = mouse.Target
+                    
                     if target and target.Parent then
-                        -- Sprawdź czy to gracz
+                        -- Znajdź gracza
                         local player = players:GetPlayerFromCharacter(target.Parent)
                         if not player then
                             player = players:GetPlayerFromCharacter(target.Parent.Parent)
                         end
                         
-                        -- Sprawdź czy to część ciała gracza
-                        if not player and target.Parent:IsA("Part") and target.Parent.Parent then
-                            player = players:GetPlayerFromCharacter(target.Parent.Parent)
-                        end
-                        
-                        -- Dodatkowe sprawdzenie dla Head, Torso itp
-                        if not player and target:IsA("BasePart") and target.Parent:IsA("Model") then
-                            player = players:GetPlayerFromCharacter(target.Parent)
-                        end
-                        
                         if player and player ~= localPlayer then
                             local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
                             if humanoid and humanoid.Health > 0 then
-                                -- SPRAWDZENIE CZY CEL NAPRAWDĘ JEST WIDOCZNY
-                                local head = player.Character:FindFirstChild("Head")
-                                if head then
-                                    -- Raycast żeby sprawdzić czy nie ma ściany
-                                    local ray = Ray.new(camera.CFrame.Position, (head.Position - camera.CFrame.Position).Unit * 1000)
-                                    local hit, pos = workspace:FindPartOnRayWithIgnoreList(ray, {localPlayer.Character, camera})
-                                    
-                                    -- Jeśli trafiliśmy w gracza lub w jego część ciała
-                                    if hit and (hit:IsDescendantOf(player.Character) or hit == player.Character) then
-                                        -- Strzelaj
-                                        task.wait(triggerDelay)
-                                        mouse1click()
-                                        lastShotTime = tick()
-                                    end
+                                -- Lista części ciała (nie sprawdzamy nazwy, strzelamy jakikolwiek target który należy do gracza)
+                                local ray = Ray.new(camera.CFrame.Position, (target.Position - camera.CFrame.Position).Unit * 1000)
+                                local hit, pos = workspace:FindPartOnRayWithIgnoreList(ray, {localPlayer.Character, camera})
+                                
+                                if hit and (hit:IsDescendantOf(player.Character) or hit == player.Character) then
+                                    -- Strzelaj
+                                    mouse1click()
+                                    lastShotTime = tick()
                                 end
                             end
                         end
@@ -1528,12 +1553,16 @@ local function createInviteSystem()
             local function smoothLoading()
                 local targetPercent = 0
                 local currentPercent = 0
+                
+                if not loadingFill or not loadingProgress or not loadingStatus then
+                    return
+                end
 
                 local steps = {
                     {target = 10, text = "ŁADOWANIE MODUŁÓW..."},
                     {target = 25, text = "INICJALIZACJA AIMBOT..."},
                     {target = 40, text = "KONFIGURACJA ESP Z TRACERAMI..."},
-                    {target = 55, text = "ŁADOWANIE TRIGGERBOT..."},
+                    {target = 55, text = "ŁADOWANIE TRIGGERBOTA..."},
                     {target = 70, text = "USTAWIANIE KOLORÓW..."},
                     {target = 85, text = "APLIKOWANIE USTAWIEN..."},
                     {target = 95, text = "FINALIZACJA..."},
@@ -1542,7 +1571,7 @@ local function createInviteSystem()
 
                 for _, step in ipairs(steps) do
                     targetPercent = step.target
-                    loadingSubText.Text = step.text
+                    loadingStatus.Text = step.text
 
                     while currentPercent < targetPercent do
                         currentPercent = currentPercent + 1
@@ -1553,14 +1582,17 @@ local function createInviteSystem()
                 end
 
                 task.wait(0.3)
+                
                 loadingFrame.Visible = false
                 mainFrame.Visible = true
                 watermark.Visible = true
-                keybindList.Visible = keybindListVisible
+                if keybindListVisible then
+                    keybindList.Visible = true
+                end
+                
                 updateKeybindList()
             end
 
-            -- Uruchomienie ładowania
             task.spawn(smoothLoading)
             
         else
@@ -1573,7 +1605,6 @@ local function createInviteSystem()
         end
     end)
     
-    -- Obsługa Enter w polu tekstowym
     codeBox.FocusLost:Connect(function(enterPressed)
         if enterPressed then
             submitBtn.MouseButton1Click:Fire()
@@ -1583,5 +1614,4 @@ local function createInviteSystem()
     return inviteGui
 end
 
--- Uruchomienie systemu invite
 local inviteGui = createInviteSystem()
